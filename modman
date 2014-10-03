@@ -1,0 +1,3 @@
+app/code/community/Mbiz/TrackingTags app/code/community/Mbiz/TrackingTags
+app/design/frontend/base/default/layout/mbiz_trackingtags.xml app/design/frontend/base/default/layout/mbiz_trackingtags.xml
+app/etc/modules/Mbiz_TrackingTags.xml app/etc/modules/Mbiz_TrackingTags.xml
