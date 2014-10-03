@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * This file is part of Mbiz_TrackingTags for Magento.
+ *
+ * @license All rights reserved
+ * @author Jacques Bodin-Hullin <j.bodinhullin@monsieurbiz.com> <@jacquesbh>
+ * @category Mbiz
+ * @package Mbiz_TrackingTags
+ * @copyright Copyright (c) 2014 Monsieur Biz (http://monsieurbiz.com/)
+ */
+-->
+<layout version="0.1.0">
+
+    <!-- Tag in homepage -->
+    <cms_index_index>
+        <block type="mbiz_trackingtags/tag" name="tracking_tag.homepage" parent="before_body_end">
+            <action method="setTagIdentifier">
+                <identifier>homepage</identifier>
+            </action>
+        </block>
+    </cms_index_index>
+
+    <!-- Tag in category -->
+    <catalog_category_view>
+        <block type="mbiz_trackingtags/tag" name="tracking_tag.category" parent="before_body_end">
+            <action method="setTagIdentifier">
+                <identifier>category</identifier>
+            </action>
+        </block>
+    </catalog_category_view>
+
+    <!-- Tag in product view -->
+    <catalog_product_view>
+        <block type="mbiz_trackingtags/tag" name="tracking_tag.product" parent="before_body_end">
+            <action method="setTagIdentifier">
+                <identifier>product</identifier>
+            </action>
+        </block>
+    </catalog_product_view>
+
+    <!-- Tag in cart -->
+    <checkout_cart_index>
+        <block type="mbiz_trackingtags/tag" name="tracking_tag.product" parent="before_body_end">
+            <action method="setTagIdentifier">
+                <identifier>cart</identifier>
+            </action>
+        </block>
+    </checkout_cart_index>
+
+    <!-- Tag in checkout success -->
+    <checkout_onepage_success>
+        <block type="mbiz_trackingtags/tag" name="tracking_tag.checkout_success" parent="before_body_end">
+            <action method="setTagIdentifier">
+                <identifier>checkout_success</identifier>
+            </action>
+        </block>
+    </checkout_onepage_success>
+
+</layout>

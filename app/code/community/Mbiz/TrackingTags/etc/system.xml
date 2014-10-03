@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * This file is part of Mbiz_TrackingTags for Magento.
+ *
+ * @license All rights reserved
+ * @author Jacques Bodin-Hullin <j.bodinhullin@monsieurbiz.com> <@jacquesbh>
+ * @category Mbiz
+ * @package Mbiz_TrackingTags
+ * @copyright Copyright (c) 2014 Monsieur Biz (http://monsieurbiz.com/)
+ */
+-->
+<config>
+    <sections>
+        <design>
+            <groups>
+                <mbiz_trackingtags translate="label" module="mbiz_trackingtags">
+                    <label>Tracking tags</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <homepage_active translate="label" module="mbiz_trackingtags">
+                            <label>Active homepage tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Active the tracking tag on the homepage.]]></comment>
+                        </homepage_active>
+                        <homepage_tag translate="label" module="mbiz_trackingtags">
+                            <label>Homepage tag</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <homepage_active>1</homepage_active>
+                            </depends>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Contains HTML.]]></comment>
+                        </homepage_tag>
+                        <product_active translate="label" module="mbiz_trackingtags">
+                            <label>Active product tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Active the tracking tag on the product page.]]></comment>
+                        </product_active>
+                        <product_tag translate="label" module="mbiz_trackingtags">
+                            <label>Product tag</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <product_active>1</product_active>
+                            </depends>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Contains HTML.]]></comment>
+                        </product_tag>
+                        <category_active translate="label" module="mbiz_trackingtags">
+                            <label>Active category tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>450</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Active the tracking tag on the category page.]]></comment>
+                        </category_active>
+                        <category_tag translate="label" module="mbiz_trackingtags">
+                            <label>Category tag</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <category_active>1</category_active>
+                            </depends>
+                            <sort_order>470</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Contains HTML.]]></comment>
+                        </category_tag>
+                        <cart_active translate="label" module="mbiz_trackingtags">
+                            <label>Active cart tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>500</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Active the tracking tag on the cart page.]]></comment>
+                        </cart_active>
+                        <cart_tag translate="label" module="mbiz_trackingtags">
+                            <label>Cart tag</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <cart_active>1</cart_active>
+                            </depends>
+                            <sort_order>600</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Contains HTML.]]></comment>
+                        </cart_tag>
+                        <checkout_success_active translate="label" module="mbiz_trackingtags">
+                            <label>Active success tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>700</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Active the tracking tag on the success page.]]></comment>
+                        </checkout_success_active>
+                        <checkout_success_tag translate="label" module="mbiz_trackingtags">
+                            <label>Success tag</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <checkout_success_active>1</checkout_success_active>
+                            </depends>
+                            <sort_order>800</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Contains HTML.]]></comment>
+                        </checkout_success_tag>
+                    </fields>
+                </mbiz_trackingtags>
+            </groups>
+        </design>
+    </sections>
+</config>

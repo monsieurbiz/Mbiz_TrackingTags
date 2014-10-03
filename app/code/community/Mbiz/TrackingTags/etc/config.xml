@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * This file is part of Mbiz_TrackingTags for Magento.
+ *
+ * @license All rights reserved
+ * @author Jacques Bodin-Hullin <j.bodinhullin@monsieurbiz.com> <@jacquesbh>
+ * @category Mbiz
+ * @package Mbiz_TrackingTags
+ * @copyright Copyright (c) 2014 Monsieur Biz (http://monsieurbiz.com/)
+ */
+-->
+<config>
+    <modules>
+        <Mbiz_TrackingTags>
+            <version>0.1.0</version>
+        </Mbiz_TrackingTags>
+    </modules>
+    <global>
+        <helpers>
+            <mbiz_trackingtags>
+                <class>Mbiz_TrackingTags_Helper</class>
+            </mbiz_trackingtags>
+        </helpers>
+        <models>
+            <mbiz_trackingtags>
+                <class>Mbiz_TrackingTags_Model</class>
+            </mbiz_trackingtags>
+        </models>
+        <blocks>
+            <mbiz_trackingtags>
+                <class>Mbiz_TrackingTags_Block</class>
+            </mbiz_trackingtags>
+        </blocks>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <mbiz_trackingtags module="Mbiz_TrackingTags">
+                    <file>mbiz_trackingtags.xml</file>
+                </mbiz_trackingtags>
+            </updates>
+        </layout>
+    </frontend>
+    <default>
+        <design>
+            <mbiz_trackingtags>
+                <homepage_active>0</homepage_active>
+                <homepage_tag><![CDATA[<!--
+Customer name: {{customer attr="name"}}
+Customer firstname: {{customer attr="firstname"}}
+Customer lastname: {{customer attr="lastname"}}
+-->]]></homepage_tag>
+                <product_active>0</product_active>
+                <product_tag><![CDATA[<!--
+Product ID: {{product attr="id"}}
+Product name: {{product attr="name"}}
+Product URL: {{product attr="product_url"}}
+-->]]></product_tag>
+                <category_active>0</category_active>
+                <category_tag><![CDATA[<!--
+Category ID: {{category attr="id"}}
+Category name: {{category attr="name"}}
+Category URL: {{category attr="url"}}
+-->]]></category_tag>
+                <cart_active>0</cart_active>
+                <cart_tag><![CDATA[<!--
+Cart items: {{cart items="id,sku,name"}}
+Cart items count: {{cart attr="items_count"}}
+
+Quote total: {{quote attr="grand_total"}} {{quote attr="quote_currency_code"}}
+-->]]></cart_tag>
+                <checkout_success_active>0</checkout_success_active>
+                <checkout_success_tag><![CDATA[<!--
+Order ID: {{lastorder attr="id"}}
+Order increment ID: {{lastorder attr="increment_id"}}
+Order coupon : {{lastorder attr="coupon_code"}}
+Order items: {{lastorder items="id,sku,name,qty,qty_ordered"}}
+-->]]></checkout_success_tag>
+            </mbiz_trackingtags>
+        </design>
+    </default>
+</config>
