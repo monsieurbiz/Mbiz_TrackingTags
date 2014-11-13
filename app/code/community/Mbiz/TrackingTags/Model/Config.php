@@ -68,9 +68,16 @@ class Mbiz_TrackingTags_Model_Config extends Mage_Core_Model_Abstract
     public function isGenericTagUri($uri)
     {
         $uriCollection = Mage::getStoreConfig('design/mbiz_trackingtags/generic_uri_collection');
-        $uriCollection = explode("\r\n", $uriCollection);
+        $uriCollection = explode("\n", $uriCollection);
+
         foreach ($uriCollection as $k => $uri) {
-            $uriCollection[$k] = trim($uri);
+            $uri = trim($uri);
+            if ($uri === '') {
+                unset($uriCollection[$k]);
+            }
+            else {
+                $uriCollection[$k] = $uri;
+            }
         }
 
         return in_array($uri, $uriCollection);
