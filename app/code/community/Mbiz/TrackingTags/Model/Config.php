@@ -62,13 +62,14 @@ class Mbiz_TrackingTags_Model_Config extends Mage_Core_Model_Abstract
     /**
      * Check if given uri is in generic uri config
      *
-     * @param string $uri
+     * @param string $checkedUri
      * @return bool
      */
-    public function isGenericTagUri($uri)
+    public function isGenericTagUri($checkedUri)
     {
         $uriCollection = Mage::getStoreConfig('design/mbiz_trackingtags/generic_uri_collection');
         $uriCollection = explode("\n", $uriCollection);
+
 
         foreach ($uriCollection as $k => $uri) {
             $uri = trim($uri);
@@ -80,7 +81,7 @@ class Mbiz_TrackingTags_Model_Config extends Mage_Core_Model_Abstract
             }
         }
 
-        return in_array($uri, $uriCollection);
+        return in_array($checkedUri, $uriCollection);
     }
 
 // Monsieur Biz Tag NEW_METHOD
