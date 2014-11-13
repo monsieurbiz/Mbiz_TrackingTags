@@ -57,4 +57,13 @@
         </block>
     </checkout_onepage_success>
 
+    <!-- Generic tracking tag -->
+    <mbiz_trackingtags_generic>
+        <block type="mbiz_trackingtags/tag" name="tracking_tag.generic" parent="before_body_end">
+            <action method="setTagIdentifier">
+                <identifier helper="mbiz_trackingtags/data/getGenericTagIdentifier"/>
+            </action>
+        </block>
+    </mbiz_trackingtags_generic>
+
 </layout>
