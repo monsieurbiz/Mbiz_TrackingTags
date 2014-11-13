@@ -21,6 +21,11 @@ class Mbiz_TrackingTags_Model_Config extends Mage_Core_Model_Abstract
      */
     const GENERIC_TAG_IDENTIFIER = 'generic';
 
+    /**
+     * Identifier for "cms page" tag
+     */
+    const PAGE_TAG_IDENTIFIER = 'page';
+
 // Monsieur Biz Tag NEW_CONST
 
 // Monsieur Biz Tag NEW_VAR

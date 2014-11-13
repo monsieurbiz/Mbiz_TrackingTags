@@ -32,6 +32,24 @@ class Mbiz_TrackingTags_Model_Observer
         }
     }
 
+    /**
+     * Add CMS page tag on all CMS pages except homepage
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function addPageTag(Varien_Event_Observer $observer)
+    {
+        $pageId = $observer->getPage()->getIdentifier();
+        $homePageId = Mage::getStoreConfig('web/default/cms_home_page');
+
+        if ($pageId != $homePageId) {
+            $observer->getControllerAction()
+                ->getLayout()
+                ->getUpdate()
+                ->addHandle('mbiz_trackingtags_page');
+        }
+    }
+
 // Agence Soon Tag NEW_METHOD
 
 }

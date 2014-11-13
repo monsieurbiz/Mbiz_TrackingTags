@@ -66,4 +66,13 @@
         </block>
     </mbiz_trackingtags_generic>
 
+    <!-- Tag in CMS page -->
+    <mbiz_trackingtags_page>
+        <block type="mbiz_trackingtags/tag" name="tracking_tag.page" parent="before_body_end">
+            <action method="setTagIdentifier">
+                <identifier>page</identifier>
+            </action>
+        </block>
+    </mbiz_trackingtags_page>
+
 </layout>
