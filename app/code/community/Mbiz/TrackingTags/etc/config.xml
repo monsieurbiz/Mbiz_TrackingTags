@@ -34,6 +34,24 @@
         </blocks>
     </global>
     <frontend>
+        <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <mbiz_trackingtags_add_generic_tag>
+                        <model>mbiz_trackingtags/observer</model>
+                        <method>addGenericTag</method>
+                    </mbiz_trackingtags_add_generic_tag>
+                </observers>
+            </controller_action_layout_load_before>
+            <cms_page_render>
+                <observers>
+                    <mbiz_trackingtags_add_page_tag>
+                        <model>mbiz_trackingtags/observer</model>
+                        <method>addPageTag</method>
+                    </mbiz_trackingtags_add_page_tag>
+                </observers>
+            </cms_page_render>
+        </events>
         <layout>
             <updates>
                 <mbiz_trackingtags module="Mbiz_TrackingTags">
@@ -77,6 +95,13 @@ Order increment ID: {{lastorder attr="increment_id"}}
 Order coupon : {{lastorder attr="coupon_code"}}
 Order items: {{lastorder items="id,sku,name,qty,qty_ordered"}}
 -->]]></checkout_success_tag>
+                <generic_active>0</generic_active>
+                <page_active>0</page_active>
+                <page_tag><![CDATA[<!--
+Page ID: {{page attr="id"}}
+Page URL key: {{page attr="identifier"}}
+Page Title: {{page attr="title"}}
+-->]]></page_tag>
             </mbiz_trackingtags>
         </design>
     </default>

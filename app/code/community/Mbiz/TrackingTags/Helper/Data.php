@@ -47,10 +47,12 @@ class Mbiz_TrackingTags_Helper_Data extends Mage_Core_Helper_Abstract
     public function getTrackingTag($identifier)
     {
         $filter = Mage::getModel('mbiz_trackingtags/filter');
-        return $filter->filter(Mage::getSingleton('mbiz_trackingtags/config')->getTrackingTag(
-            $identifier,
-             Mage::app()->getStore()->getId()
-        ));
+        return $filter->filter(
+            Mage::getSingleton('mbiz_trackingtags/config')->getTrackingTag(
+                $identifier,
+                Mage::app()->getStore()->getId()
+            )
+        );
     }
 
     /**
@@ -69,6 +71,44 @@ class Mbiz_TrackingTags_Helper_Data extends Mage_Core_Helper_Abstract
             }
         }
         return $this->_lastOrder;
+    }
+
+    /**
+     * Retrieve generic tag identifier
+     *
+     * @return string
+     */
+    public function getGenericTagIdentifier()
+    {
+        return Mbiz_TrackingTags_Model_Config::GENERIC_TAG_IDENTIFIER;
+    }
+
+    /**
+     * Check if given uri or current page's uri has a generic tag
+     *
+     * @param null|string $uri
+     * @return bool
+     */
+    public function hasGenericTag($uri = null)
+    {
+        $isGenericTagActive = $this->isTagActive($this->getGenericTagIdentifier());
+
+        if (!$isGenericTagActive) {
+            return false;
+        }
+
+        // If no uri is passed, use current page's uri
+        if (is_null($uri)) {
+            $uri = $this->_getRequest()->getServer('REQUEST_URI');
+
+            // Strip first slash if it exists
+            $uri = ltrim($uri, '/');
+
+            // Strip last slash if it exists
+            $uri = rtrim($uri, '/');
+        }
+
+        return Mage::getSingleton('mbiz_trackingtags/config')->isGenericTagUri($uri);
     }
 
 // Monsieur Biz Tag NEW_METHOD

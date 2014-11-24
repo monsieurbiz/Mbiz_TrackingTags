@@ -132,6 +132,62 @@
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[Contains HTML.]]></comment>
                         </checkout_success_tag>
+                        <generic_active>
+                            <label>Active generic tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>900</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Active a generic tracking tag on specific pages.]]></comment>
+                        </generic_active>
+                        <generic_tag translate="label" module="mbiz_trackingtags">
+                            <label>Generic tag</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <generic_active>1</generic_active>
+                            </depends>
+                            <sort_order>910</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Contains HTML.]]></comment>
+                        </generic_tag>
+                        <generic_uri_collection translate="label" module="mbiz_trackingtags">
+                            <label>Generic tag URIs</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <generic_active>1</generic_active>
+                            </depends>
+                            <sort_order>920</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[One line per uri]]></comment>
+                        </generic_uri_collection>
+                        <page_active>
+                            <label>Active CMS page tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1000</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Active the tracking tag on CMS pages.]]></comment>
+                        </page_active>
+                        <page_tag translate="label" module="mbiz_trackingtags">
+                            <label>CMS page tag</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <page_active>1</page_active>
+                            </depends>
+                            <sort_order>1010</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Contains HTML.]]></comment>
+                        </page_tag>
                     </fields>
                 </mbiz_trackingtags>
             </groups>

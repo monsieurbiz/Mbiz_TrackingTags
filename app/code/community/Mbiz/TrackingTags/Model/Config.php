@@ -16,6 +16,16 @@
 class Mbiz_TrackingTags_Model_Config extends Mage_Core_Model_Abstract
 {
 
+    /**
+     * Identifier for "generic" tag
+     */
+    const GENERIC_TAG_IDENTIFIER = 'generic';
+
+    /**
+     * Identifier for "cms page" tag
+     */
+    const PAGE_TAG_IDENTIFIER = 'page';
+
 // Monsieur Biz Tag NEW_CONST
 
 // Monsieur Biz Tag NEW_VAR
@@ -52,6 +62,31 @@ class Mbiz_TrackingTags_Model_Config extends Mage_Core_Model_Abstract
             ),
             $store
         );
+    }
+
+    /**
+     * Check if given uri is in generic uri config
+     *
+     * @param string $checkedUri
+     * @return bool
+     */
+    public function isGenericTagUri($checkedUri)
+    {
+        $uriCollection = Mage::getStoreConfig('design/mbiz_trackingtags/generic_uri_collection');
+        $uriCollection = explode("\n", $uriCollection);
+
+
+        foreach ($uriCollection as $k => $uri) {
+            $uri = trim($uri);
+            if ($uri === '') {
+                unset($uriCollection[$k]);
+            }
+            else {
+                $uriCollection[$k] = $uri;
+            }
+        }
+
+        return in_array($checkedUri, $uriCollection);
     }
 
 // Monsieur Biz Tag NEW_METHOD

@@ -167,6 +167,28 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
         return '';
     }
 
+    /**
+     * @return string
+     */
+    public function pageDirective($construction)
+    {
+        $page = Mage::getSingleton('cms/page'); // @see Mage_Cms_Helper_Page::_renderPage()
+
+        if (!$page || !$page->getPageId()) {
+            return '';
+        }
+
+        $params   = $this->_getIncludeParameters($construction[2]);
+
+        // Attribute?
+        if (isset($params['attr']) || isset($params['attribute'])) {
+            $attr = isset($params['attr']) ? $params['attr'] : $params['attribute'];
+            return Mage::helper('core')->jsQuoteEscape($page->getDataUsingMethod($attr), '\'');
+        }
+
+        return '';
+    }
+
 // Monsieur Biz Tag NEW_METHOD
 
 }
