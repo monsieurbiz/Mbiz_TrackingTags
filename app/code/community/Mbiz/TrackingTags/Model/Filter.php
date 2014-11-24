@@ -57,11 +57,43 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
             // Only if we have an attribute
             if (isset($params['attr']) || isset($params['attribute'])) {
                 $attr = isset($params['attr']) ? $params['attr'] : $params['attribute'];
-                return Mage::helper('core')->jsQuoteEscape($category->getDataUsingMethod($attr), '\'');
+
+                $data = $category->getDataUsingMethod($attr);
+
+                if ($attr == Mbiz_TrackingTags_Model_Config::CATEGORY_URL_KEY_ATTRIBUTE_CODE && Mage::getEdition() == Mage::EDITION_ENTERPRISE) {
+                    $data = $this->_getEnterpriseUrlKey($category);
+                }
+
+                return Mage::helper('core')->jsQuoteEscape($data, '\'');
             }
         }
 
         return '';
+    }
+
+    /**
+     * Get URL key for Enterprise
+     *
+     * @param Mage_Catalog_Model_Category $category
+     * @return mixed
+     */
+    protected function _getEnterpriseUrlKey(Mage_Catalog_Model_Category $category)
+    {
+        $resource = Mage::getSingleton('core/resource');
+        $conn = $resource->getConnection('core_read');
+        $tableName = $resource->getTableName(array('catalog/category', 'url_key'));
+        $select = $conn->select()
+            ->from(
+                array('url_key_table' => $tableName),
+                array('url_key' => 'url_key_table.value', 'store_id' => 'MAX(url_key_table.store_id)')
+            )
+            ->where('url_key_table.entity_id = ?', $category->getId())
+            ->where('url_key_table.store_id IN(?)', array(Mage_Core_Model_App::ADMIN_STORE_ID, $category->getStoreId()))
+        ;
+
+        $row = $conn->fetchRow($select);
+
+        return $row['url_key'];
     }
 
     /**

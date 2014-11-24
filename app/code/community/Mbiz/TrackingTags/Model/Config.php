@@ -16,6 +16,11 @@
 class Mbiz_TrackingTags_Model_Config extends Mage_Core_Model_Abstract
 {
 
+    /**
+     * URL key attribute code for category
+     */
+    const CATEGORY_URL_KEY_ATTRIBUTE_CODE = 'url_key';
+
 // Monsieur Biz Tag NEW_CONST
 
 // Monsieur Biz Tag NEW_VAR
