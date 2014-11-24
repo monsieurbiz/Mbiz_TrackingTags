@@ -103,6 +103,9 @@ class Mbiz_TrackingTags_Helper_Data extends Mage_Core_Helper_Abstract
 
             // Strip first slash if it exists
             $uri = ltrim($uri, '/');
+
+            // Strip last slash if it exists
+            $uri = rtrim($uri, '/');
         }
 
         return Mage::getSingleton('mbiz_trackingtags/config')->isGenericTagUri($uri);
