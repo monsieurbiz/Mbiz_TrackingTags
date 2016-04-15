@@ -42,7 +42,13 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Contains HTML.]]></comment>
+                            <comment><![CDATA[Contains HTML - Example:<br>
+<code><pre>
+Customer name: {{customer attr="name"}}
+Customer firstname: {{customer attr="firstname"}}
+Customer lastname: {{customer attr="lastname"}}
+</pre></code>
+                            ]]></comment>
                         </homepage_tag>
                         <product_active translate="label" module="mbiz_trackingtags">
                             <label>Active product tag</label>
@@ -64,7 +70,13 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Contains HTML.]]></comment>
+                            <comment><![CDATA[Contains HTML - Example:<br>
+<code><pre>
+Product ID: {{product attr="id"}}
+Product name: {{product attr="name"}}
+Product URL: {{product attr="product_url"}}
+</pre></code>
+                            ]]></comment>
                         </product_tag>
                         <category_active translate="label" module="mbiz_trackingtags">
                             <label>Active category tag</label>
@@ -86,7 +98,13 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Contains HTML.]]></comment>
+                            <comment><![CDATA[Contains HTML - Example:<br>
+<code><pre>
+Category ID: {{category attr="id"}}
+Category name: {{category attr="name"}}
+Category URL: {{category attr="url"}}
+</pre></code>
+                            ]]></comment>
                         </category_tag>
                         <cart_active translate="label" module="mbiz_trackingtags">
                             <label>Active cart tag</label>
@@ -108,7 +126,17 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Contains HTML.]]></comment>
+                            <comment><![CDATA[Contains HTML - Example:<br>
+<code><pre>
+Cart items: {{cart items="id,sku,name"}}
+Cart items count: {{cart attr="items_count"}}
+
+Quote total: {{quote attr="grand_total"}} {{quote attr="quote_currency_code"}}
+</pre></code>
+                            ]]></comment>
+
+
+
                         </cart_tag>
                         <checkout_success_active translate="label" module="mbiz_trackingtags">
                             <label>Active success tag</label>
@@ -130,8 +158,50 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Contains HTML.]]></comment>
+                            <comment><![CDATA[Content HTML - Example:<br>
+<code><pre>
+Order ID: {{lastorder attr="id"}}
+Order increment ID: {{lastorder attr="increment_id"}}
+Order coupon : {{lastorder attr="coupon_code"}}
+Order items: {{lastorder items="id,sku,name,qty,qty_ordered"}}
+</pre>
+</code>
+                            ]]></comment>
                         </checkout_success_tag>
+                        <all_active translate="label" module="mbiz_trackingtags">
+                            <label>Active all pages tag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>900</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Active the tracking tag for all pages.]]></comment>
+                        </all_active>
+                        <all_tag translate="label" module="mbiz_trackingtags">
+                            <label>All pages tag</label>
+                            <frontend_type>textarea</frontend_type>
+                            <depends>
+                                <all_active>1</all_active>
+                            </depends>
+                            <sort_order>1000</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Content HTML - Example:<br>
+<code><pre>
+Customer name: {{customer attr="name"}}
+Customer firstname: {{customer attr="firstname"}}
+Customer lastname: {{customer attr="lastname"}}
+
+Quote total: {{quote attr="grand_total"}} {{quote attr="quote_currency_code"}}
+
+Cart items: {{cart items="id,sku,name"}}
+Cart items count: {{cart attr="items_count"}}
+</pre>
+</code>
+                            ]]></comment>
+                        </all_tag>
                     </fields>
                 </mbiz_trackingtags>
             </groups>

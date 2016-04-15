@@ -12,6 +12,15 @@
 -->
 <layout version="0.1.0">
 
+    <!-- Tag in all pages -->
+    <default>
+        <block type="mbiz_trackingtags/tag" name="tracking_tag.all" parent="before_body_end">
+            <action method="setTagIdentifier">
+                <identifier>all</identifier>
+            </action>
+        </block>
+    </default>
+
     <!-- Tag in homepage -->
     <cms_index_index>
         <block type="mbiz_trackingtags/tag" name="tracking_tag.homepage" parent="before_body_end">
@@ -56,5 +65,4 @@
             </action>
         </block>
     </checkout_onepage_success>
-
 </layout>
