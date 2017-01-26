@@ -1,0 +1,15 @@
+{
+  "name": "monsieurbiz/mbiz_trackingtags",
+  "description": "Magento module which allows to configure tags on some pages with available data.",
+  "type": "magento-module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jacques Bodin-Hullin",
+      "email": "j.bodinhullin@monsieurbiz.com"
+    }
+  ],
+  "suggest": {
+    "magento-hackathon/magento-composer-installer": "Allows to manage this package as a dependency."
+  }
+}
