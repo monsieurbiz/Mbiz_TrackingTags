@@ -20,6 +20,14 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
 
 // Monsieur Biz Tag NEW_VAR
 
+
+    /**
+     * The number of orders for the customer
+     *
+     * @var int
+     */
+    protected $_customerOrders;
+
     /**
      * @return string
      */
@@ -107,6 +115,22 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
         if (isset($params['attr']) || isset($params['attribute'])) {
             $attr = isset($params['attr']) ? $params['attr'] : $params['attribute'];
             $customer = Mage::helper('customer')->getCustomer();
+
+            // Manage the number of orders for the customer
+            if ($attr == 'orders_count') {
+                if ($this->_customerOrders !== null) {
+                    return $this->_customerOrders;
+                }
+                if ($customer->getId()) {
+                    $customerOrders = Mage::getResourceModel('sales/order_collection')
+                        ->addFieldToFilter('customer_id', array('eq' => $customer->getId()));
+
+                    $this->_customerOrders = $customerOrders->getSize();
+                } else {
+                    $this->_customerOrders = 1;
+                }
+                return $this->_customerOrders;
+            }
             return Mage::helper('core')->jsQuoteEscape($customer->getDataUsingMethod($attr), '\'');
         }
 
