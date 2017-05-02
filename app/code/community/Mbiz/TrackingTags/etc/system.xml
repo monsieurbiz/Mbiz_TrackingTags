@@ -47,6 +47,7 @@
 Customer name: {{customer attr="name"}}
 Customer firstname: {{customer attr="firstname"}}
 Customer lastname: {{customer attr="lastname"}}
+Customer number of orders: {{customer attr="orders_count"}}
 </pre></code>
                             ]]></comment>
                         </homepage_tag>
