@@ -29,9 +29,12 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
     protected $_customerOrders;
 
     /**
+     * Get the requested product information
+     *
+     * @param array $construction
      * @return string
      */
-    public function productDirective($construction)
+    public function productDirective(array $construction)
     {
         // This directive only works if we have a product!
         if (!$product = Mage::registry('product')) {
@@ -39,7 +42,19 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
         }
 
         if (is_object($product) && $product->getId()) {
-            $params   = $this->_getIncludeParameters($construction[2]);
+            // Fire event to implement custom behaviour if needed, the object can be modified by the event
+            $object = new Varien_Object();
+            $params = $this->_getIncludeParameters($construction[2]);
+            Mage::dispatchEvent(
+                'mbiz_trackingtags_product_directive',
+                ['object' => $object, 'params' => $params, 'product' => $product]
+            );
+
+            // An event sets a value, so we return it
+            if ($object->getValue()) {
+                return $object->getValue();
+            }
+
             // Only if we have an attribute
             if (isset($params['attr']) || isset($params['attribute'])) {
                 $attr = isset($params['attr']) ? $params['attr'] : $params['attribute'];
@@ -51,9 +66,12 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
     }
 
     /**
+     * Get the requested category information
+     *
+     * @param array $construction
      * @return string
      */
-    public function categoryDirective($construction)
+    public function categoryDirective(array $construction)
     {
         // This directive only works if we have a category!
         if (!$category = Mage::registry('category')) {
@@ -61,7 +79,19 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
         }
 
         if (is_object($category) && $category->getId()) {
-            $params   = $this->_getIncludeParameters($construction[2]);
+            // Fire event to implement custom behaviour if needed, the object can be modified by the event
+            $object = new Varien_Object();
+            $params = $this->_getIncludeParameters($construction[2]);
+            Mage::dispatchEvent(
+                'mbiz_trackingtags_category_directive',
+                ['object' => $object, 'params' => $params, 'category' => $category]
+            );
+
+            // An event sets a value, so we return it
+            if ($object->getValue()) {
+                return $object->getValue();
+            }
+
             // Only if we have an attribute
             if (isset($params['attr']) || isset($params['attribute'])) {
                 $attr = isset($params['attr']) ? $params['attr'] : $params['attribute'];
@@ -105,16 +135,31 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
     }
 
     /**
+     * Get the requested customer information
+     *
+     * @param array $construction
      * @return string
      */
-    public function customerDirective($construction)
+    public function customerDirective(array $construction)
     {
-        $params   = $this->_getIncludeParameters($construction[2]);
+        $customer = Mage::helper('customer')->getCustomer();
+
+        // Fire event to implement custom behaviour if needed, the object can be modified by the event
+        $object = new Varien_Object();
+        $params = $this->_getIncludeParameters($construction[2]);
+        Mage::dispatchEvent(
+            'mbiz_trackingtags_customer_directive',
+            ['object' => $object, 'params' => $params, 'customer' => $customer]
+        );
+
+        // An event sets a value, so we return it
+        if ($object->getValue()) {
+            return $object->getValue();
+        }
 
         // Attribute?
         if (isset($params['attr']) || isset($params['attribute'])) {
             $attr = isset($params['attr']) ? $params['attr'] : $params['attribute'];
-            $customer = Mage::helper('customer')->getCustomer();
 
             // Manage the number of orders for the customer
             if ($attr == 'orders_count') {
@@ -138,13 +183,27 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
     }
 
     /**
+     * Get the requested cart information
+     *
+     * @param array $construction
      * @return string
      */
-    public function cartDirective($construction)
+    public function cartDirective(array $construction)
     {
-        $params   = $this->_getIncludeParameters($construction[2]);
-
         $cart = Mage::helper('checkout/cart')->getCart();
+
+        // Fire event to implement custom behaviour if needed, the object can be modified by the event
+        $object = new Varien_Object();
+        $params = $this->_getIncludeParameters($construction[2]);
+        Mage::dispatchEvent(
+            'mbiz_trackingtags_cart_directive',
+            ['object' => $object, 'params' => $params, 'cart' => $cart]
+        );
+
+        // An event sets a value, so we return it
+        if ($object->getValue()) {
+            return $object->getValue();
+        }
 
         // Attribute?
         if (isset($params['attr']) || isset($params['attribute'])) {
@@ -171,13 +230,27 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
     }
 
     /**
+     * Get the requested quote information
+     *
+     * @param array $construction
      * @return string
      */
-    public function quoteDirective($construction)
+    public function quoteDirective(array $construction)
     {
-        $params   = $this->_getIncludeParameters($construction[2]);
-
         $quote = Mage::helper('checkout/cart')->getCart()->getQuote();
+
+        // Fire event to implement custom behaviour if needed, the object can be modified by the event
+        $object = new Varien_Object();
+        $params = $this->_getIncludeParameters($construction[2]);
+        Mage::dispatchEvent(
+            'mbiz_trackingtags_quote_directive',
+            ['object' => $object, 'params' => $params, 'quote' => $quote]
+        );
+
+        // An event sets a value, so we return it
+        if ($object->getValue()) {
+            return $object->getValue();
+        }
 
         // Attribute?
         if (isset($params['attr']) || isset($params['attribute'])) {
@@ -189,14 +262,27 @@ class Mbiz_TrackingTags_Model_Filter extends Mage_Core_Model_Email_Template_Filt
     }
 
     /**
+     * Get the requested order information in success page
+     *
+     * @param array $construction
      * @return string
      */
-    public function lastorderDirective($construction)
+    public function lastorderDirective(array $construction)
     {
-        $params   = $this->_getIncludeParameters($construction[2]);
-
         // Only if we have an order
         if ($order = Mage::helper('mbiz_trackingtags')->getLastOrder()) {
+            // Fire event to implement custom behaviour if needed, the object can be modified by the event
+            $object = new Varien_Object();
+            $params = $this->_getIncludeParameters($construction[2]);
+            Mage::dispatchEvent(
+                'mbiz_trackingtags_lastorder_directive',
+                ['object' => $object, 'params' => $params, 'lastorder' => $order]
+            );
+
+            // An event sets a value, so we return it
+            if ($object->getValue()) {
+                return $object->getValue();
+            }
 
             // Attribute?
             if (isset($params['attr']) || isset($params['attribute'])) {
